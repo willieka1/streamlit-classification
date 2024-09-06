@@ -37,13 +37,9 @@ input_df = user_input()
 
 # Predict
 if st.button('Prediksi Penyakit Jantung'):
-    # Prepare the input for the model
+ 
     input_data = input_df.values
     
-    # Convert categorical features to numeric if necessary
-    # Example: encode categorical variables here if your model needs it
-    
-    # Make prediction
     prediction = model.predict(input_data)
     
     if prediction[0] == 1:
