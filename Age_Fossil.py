@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
 # Menyiapkan aplikasi Streamlit
-st.title("Prediksi Usia Fosil dengan Regresi Linier, Random Forest, dan XGBoost")
+st.title("Prediksi Usia Fosil")
 
 # Unggah dataset
 uploaded_file = st.file_uploader("Unggah file CSV", type="csv")
