@@ -5,3 +5,4 @@ scikit-learn
 pip==24.2
 matplotlib
 seaborn
+xgboost
