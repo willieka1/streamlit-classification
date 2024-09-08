@@ -62,16 +62,42 @@ def main():
     }
     
     for column, label in categorical_columns.items():
-        if label in label_encoders:
-            user_data[column] = label_encoders[label].transform(user_data[column])
+        if column in user_data.columns:
+            if label in label_encoders:
+                try:
+                    # Ensure categorical feature encoding
+                    user_data[column] = label_encoders[label].transform(user_data[column])
+                except Exception as e:
+                    st.error(f"Error encoding '{column}': {str(e)}")
+                    return
+            else:
+                st.error(f"Label encoder for '{label}' not found.")
+                return
+    
+    # Ensure that the data has the correct columns
+    expected_columns = list(categorical_columns.keys()) + [
+        'uranium_lead_ratio', 'carbon_14_ratio', 'radioactive_decay_series',
+        'stratigraphic_layer_depth', 'isotopic_composition', 'fossil_size', 'fossil_weight'
+    ]
+    
+    # Reorder columns to match model input if necessary
+    missing_columns = set(expected_columns) - set(user_data.columns)
+    if missing_columns:
+        st.error(f"Missing columns: {missing_columns}")
+        return
+
+    user_data = user_data[expected_columns]
     
     # Tombol prediksi
     if st.button('Prediksi'):
-        # Lakukan prediksi
-        prediction = model.predict(user_data)
-        
-        # Tampilkan hasil prediksi
-        st.write(f'Predicted Age: {prediction[0]:,.2f} years')
+        try:
+            # Lakukan prediksi
+            prediction = model.predict(user_data)
+            
+            # Tampilkan hasil prediksi
+            st.write(f'Predicted Age: {prediction[0]:,.2f} years')
+        except Exception as e:
+            st.error(f"Error during prediction: {str(e)}")
 
 if __name__ == '__main__':
     main()
