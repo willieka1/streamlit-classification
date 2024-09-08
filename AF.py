@@ -44,7 +44,7 @@ def load_model_and_encoders():
 
 # Aplikasi Streamlit
 def main():
-    st.title('Geological and Paleontological Regression Analysis')
+    st.title('Analisis Regresi Geologi dan Paleontologi')
     
     # Ambil input dari pengguna
     user_data = user_input()
