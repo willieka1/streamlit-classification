@@ -10,7 +10,7 @@ def user_input():
     stratigraphic_layer_depth = st.number_input('Stratigraphic Layer Depth (meters)', min_value=0.0, step=0.1)
     geological_period = st.selectbox('Geological Period', ['Cambrian', 'Ordovician', 'Silurian', 'Devonian', 'Carboniferous', 'Permian', 'Triassic', 'Jurassic', 'Cretaceous', 'Paleogene', 'Neogene', 'Quaternary'])
     paleomagnetic_data = st.selectbox('Paleomagnetic Data', ['Normal polarity', 'Reversed polarity'])
-    inclusion_of_other_fossils = st.selectbox('Inclusion of Other Fossils', ['Yes', 'No'])
+    inclusion_of_other_fossils = st.selectbox('Inclusion of Other Fossils', ['True', 'False'])
     isotopic_composition = st.number_input('Isotopic Composition', step=0.01)
     surrounding_rock_type = st.selectbox('Surrounding Rock Type', ['Conglomerate', 'Sandstone', 'Shale', 'Limestone', 'Others'])
     stratigraphic_position = st.selectbox('Stratigraphic Position', ['Low', 'Middle', 'High'])
