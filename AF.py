@@ -64,12 +64,8 @@ def main():
     for column, label in categorical_columns.items():
         if column in user_data.columns:
             if label in label_encoders:
-                try:
-                    # Ensure categorical feature encoding
-                    user_data[column] = label_encoders[label].transform(user_data[column])
-                except Exception as e:
-                    st.error(f"Error encoding '{column}': {str(e)}")
-                    return
+                # Ensure that the column is transformed correctly
+                user_data[column] = label_encoders[label].transform(user_data[column])
             else:
                 st.error(f"Label encoder for '{label}' not found.")
                 return
@@ -80,13 +76,10 @@ def main():
         'stratigraphic_layer_depth', 'isotopic_composition', 'fossil_size', 'fossil_weight'
     ]
     
-    # Reorder columns to match model input if necessary
     missing_columns = set(expected_columns) - set(user_data.columns)
     if missing_columns:
         st.error(f"Missing columns: {missing_columns}")
         return
-
-    user_data = user_data[expected_columns]
     
     # Tombol prediksi
     if st.button('Prediksi'):
