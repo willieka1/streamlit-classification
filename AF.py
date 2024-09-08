@@ -38,7 +38,7 @@ def user_input():
 def load_model_and_encoders():
     with open('Age_Fossil.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
-    with open('label_encoders.pkl', 'rb') as le_file:
+    with open('label_encoders_age.pkl', 'rb') as le_file:
         label_encoders = pickle.load(le_file)
     return model, label_encoders
 
